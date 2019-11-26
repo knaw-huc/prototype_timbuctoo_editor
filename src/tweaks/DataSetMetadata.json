@@ -1,0 +1,140 @@
+{
+    "data": {
+        "tweaks": {
+            "name": "DataSetMetadata",
+            "fields": [{
+                    "name": "title",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "width": 60,
+                        "label": "Title"
+                    }
+                },
+                {
+                    "name": "description",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "width": 60,
+                        "height": 8,
+                        "label": "Description"
+                    }
+                },
+                {
+                    "name": "imageUrl",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "width": 80,
+                        "label": "URI"
+                    }
+                },
+                {
+                    "name": "owner",
+                    "attributes": {
+                         "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Owner"
+                    },
+                    "content": {
+                        "name": "contactInfo",
+                        "fields": [{
+                                "name": "name",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Name",
+                                    "width": 60
+                                }
+                            },
+                            {
+                                "name": "email",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Email",
+                                    "width": 60
+                                }
+                            }]
+                    }
+                },
+                {
+                    "name": "contact",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Contact"
+                    },
+                    "content": {
+                        "name": "contactInfo",
+                        "fields": [{
+                                "name": "name",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Name",
+                                    "width": 60
+                                }
+                            },
+                            {
+                                "name": "email",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Email",
+                                    "width": 60
+                                }
+                            }]
+                    }
+                },
+                {
+                    "name": "provenanceInfo",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Provenance info"
+                    },
+                    "content": {
+                        "name": "provenanceInfo",
+                        "fields": [{
+                                "name": "title",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Title",
+                                    "width": 50
+                                }
+                            },
+                            {
+                                "name": "body",
+                                "attributes": {
+                                    "CardinalityMin": "1",
+                                    "label": "Body",
+                                    "width": 90,
+                                    "height": 8,
+                                    "inputField": "multiple"
+                                }
+                            }]
+                    }
+                },
+                {
+                    "name": "license",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "License"
+                    },
+                    "content": {
+                        "name": "license",
+                        "fields":[{
+                                "name":"uri",
+                                "attributes":{
+                                    "CardinalityMin": "1",
+                                    "label": "URI",
+                                    "width": 100,
+                                    "valueType": "string"
+                                }
+                        }]
+                    }
+                }],
+            "attributes": {
+                "label": "Dataset metadata",
+                "CardinalityMin": "1",
+                "CardinalityMax": "1"
+            }
+        }
+    }
+}

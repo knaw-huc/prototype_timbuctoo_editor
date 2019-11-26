@@ -1,0 +1,20 @@
+{
+    "data": {
+        "tweaks": {
+            "name": "schema_Person",
+            "fields" : [{
+                    "name": "schema_familyName",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "label": "Family name"
+                    }
+            },
+            {"name": "schema_givenNameList",
+                    "attributes": {
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "unbound",
+                        "label": "Given name(s)"
+                    }}]
+        }
+    }
+}

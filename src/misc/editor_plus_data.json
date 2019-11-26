@@ -1,0 +1,205 @@
+{
+    "id": "u33707283d426f900d4d33707283d426f900d4d0d__rob",
+    "content": [{
+            "type": "Component",
+            "ID": "5c768c9250227",
+            "level": 1,
+            "attributes": {
+                "label": "Dataset metadata",
+                "CardinalityMin": "1",
+                "CardinalityMax": "1",
+                "name": "DataSetMetadata"
+            },
+            "content": [{
+                    "ID": "5c768c925024a",
+                    "level": 2,
+                    "type": "Element",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "width": 60,
+                        "label": "Title",
+                        "name": "title",
+                        "ValueScheme": "string"
+                    }
+                }, {
+                    "ID": "5c768c925025b",
+                    "level": 2,
+                    "type": "Element",
+                    "attributes": {
+                        "width": 60,
+                        "height": 8,
+                        "label": "Description",
+                        "name": "description",
+                        "ValueScheme": "string"
+                    }
+                }, {
+                    "ID": "5c768c9250269",
+                    "level": 2,
+                    "type": "Element",
+                    "attributes": {
+                        "width": 80,
+                        "label": "URI",
+                        "name": "imageUrl",
+                        "ValueScheme": "string"
+                    }
+                }, {
+                    "ID": "5c768c9250273",
+                    "level": 2,
+                    "type": "Component",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Owner",
+                        "name": "owner"
+                    },
+                    "content": [{
+                            "ID": "5c768c925027d",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Name",
+                                "width": 60,
+                                "name": "name",
+                                "ValueScheme": "string"
+                            }
+                        }, {
+                            "ID": "5c768c9250286",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Email",
+                                "width": 60,
+                                "name": "email",
+                                "ValueScheme": "string"
+                            }
+                        }]
+                }, {
+                    "ID": "5c768c925028e",
+                    "level": 2,
+                    "type": "Component",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Contact",
+                        "name": "contact"
+                    },
+                    "content": [{
+                            "ID": "5c768c9250296",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Name",
+                                "width": 60,
+                                "name": "name",
+                                "ValueScheme": "string"
+                            }
+                        }, {
+                            "ID": "5c768c92502a4",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Email",
+                                "width": 60,
+                                "name": "email",
+                                "ValueScheme": "string"
+                            }
+                        }]
+                }, {
+                    "ID": "5c768c92502b6",
+                    "level": 2,
+                    "type": "Component",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "Provenance info",
+                        "name": "provenanceInfo"
+                    },
+                    "content": [{
+                            "ID": "5c768c92502c2",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Title",
+                                "width": 50,
+                                "name": "title",
+                                "ValueScheme": "string"
+                            }
+                        }, {
+                            "ID": "5c768c92502cb",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "Body",
+                                "width": 90,
+                                "height": 8,
+                                "inputField": "multiple",
+                                "name": "body",
+                                "ValueScheme": "string"
+                            }
+                        }]
+                }, {
+                    "ID": "5c768c92502d4",
+                    "level": 2,
+                    "type": "Component",
+                    "attributes": {
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "label": "License",
+                        "name": "license"
+                    },
+                    "content": [{
+                            "ID": "5c768c92502dd",
+                            "level": 3,
+                            "type": "Element",
+                            "attributes": {
+                                "label": "URI",
+                                "width": 100,
+                                "valueType": "string",
+                                "name": "uri",
+                                "ValueScheme": "string"
+                            }
+                        }]
+                }]
+        }],
+    "record": [[], [], {
+            "name": "DataSetMetadata",
+            "type": "component",
+            "value": [{
+                    "name": "title",
+                    "type": "element",
+                    "value": "Alle kennissen van Rob"
+                }, {
+                    "name": "description",
+                    "type": "element",
+                    "value": "Was nog flink zoeken."
+                }, {
+                    "name": "imageUrl",
+                    "type": "element",
+                    "value": "http:\/\/grabTheBeef.com\/driePondOsselappen.jpg"
+                }, {
+                    "name": "owner",
+                    "type": "component",
+                    "value": [{
+                            "name": "name",
+                            "type": "element",
+                            "value": "dr. Freshbeef"
+                        }, {
+                            "name": "email",
+                            "type": "element",
+                            "value": "bonzo@grabTheBeef.com"
+                        }]
+                }, {
+                    "name": "contact",
+                    "type": "component",
+                    "value": [{
+                            "name": "name",
+                            "type": "element",
+                            "value": "Rob Zeeman"
+                        }, {
+                            "name": "email",
+                            "type": "element",
+                            "value": "rob.zeeman@di.huc.knaw.nl"
+                        }]
+                }]
+        }]
+}

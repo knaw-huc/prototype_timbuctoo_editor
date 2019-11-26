@@ -1,0 +1,741 @@
+{
+    "id": "clarin.eu:cr1:p_1454489235460",
+    "content": [{
+            "type": "Component",
+            "level": 1,
+            "ID": "5c76972c044fa",
+            "attributes": {
+                "name": "EthnolectConversation",
+                "label": "Ethnolect Conversation",
+                "CardinalityMin": "1",
+                "CardinalityMax": "1",
+                "initialOrder": 1
+            },
+            "content": [{
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c0452f",
+                    "attributes": {
+                        "name": "id",
+                        "label": "ID",
+                        "ValueScheme": "int",
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "height": "2",
+                        "width": "10",
+                        "initialOrder": 1,
+                        "inputField": "multiple"
+                    }
+                }, {
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c04548",
+                    "attributes": {
+                        "name": "title",
+                        "label": "Title",
+                        "ValueScheme": "string",
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "width": "60",
+                        "initialOrder": 2,
+                        "inputField": "single"
+                    }
+                }, {
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c04559",
+                    "attributes": {
+                        "name": "modificationDate",
+                        "label": "Modification date",
+                        "ValueScheme": "date",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "1",
+                        "initialOrder": 3
+                    }
+                }, {
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c04568",
+                    "attributes": {
+                        "name": "kindOfConversation",
+                        "label": "Kind of conversation",
+                        "ValueScheme": "string",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "1",
+                        "initialOrder": 4
+                    }
+                }, {
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c04575",
+                    "attributes": {
+                        "name": "interviewDate",
+                        "label": "Interview date",
+                        "ValueScheme": "date",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "1",
+                        "initialOrder": 5
+                    }
+                }, {
+                    "type": "Element",
+                    "level": 2,
+                    "ID": "5c76972c04583",
+                    "attributes": {
+                        "name": "city",
+                        "label": "City",
+                        "ValueScheme": "string",
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "1",
+                        "initialOrder": 6
+                    }
+                }, {
+                    "type": "Component",
+                    "level": 2,
+                    "ID": "5c76972c04590",
+                    "attributes": {
+                        "name": "ProtocolFile",
+                        "label": "Protocol file",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "1",
+                        "initialOrder": 7
+                    },
+                    "content": [{
+                            "type": "Component",
+                            "level": 3,
+                            "ID": "5c76972c0459f",
+                            "attributes": {
+                                "name": "CoreResourceInformation",
+                                "label": "Core resource information",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "resource": ".xls,.xlsx",
+                                "ValueScheme": [],
+                                "initialOrder": 1
+                            },
+                            "content": [{
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c045be",
+                                    "attributes": {
+                                        "name": "inventoryId",
+                                        "label": "Inventory ID",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 1
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c045cc",
+                                    "attributes": {
+                                        "name": "description",
+                                        "label": "Description",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "true",
+                                        "duplicate": "yes",
+                                        "height": "8",
+                                        "width": "60",
+                                        "initialOrder": 2,
+                                        "inputField": "multiple"
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c045dd",
+                                    "attributes": {
+                                        "name": "medium",
+                                        "label": "Medium",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "unbounded",
+                                        "ValueScheme": [[{
+                                                    "value": "server"
+                                                }, {
+                                                    "value": "cdrom"
+                                                }, {
+                                                    "value": "memorystick"
+                                                }, {
+                                                    "value": "harddisc"
+                                                }, {
+                                                    "value": "dvd"
+                                                }, {
+                                                    "value": "diskette"
+                                                }, {
+                                                    "value": "hi8"
+                                                }]],
+                                        "initialOrder": 3
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c04623",
+                                    "attributes": {
+                                        "name": "oldBoxNumber",
+                                        "label": "Old box number",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 4
+                                    }
+                                }, {
+                                    "type": "Component",
+                                    "level": 4,
+                                    "ID": "5c76972c04632",
+                                    "attributes": {
+                                        "name": "TechnicalMetadata",
+                                        "label": "Technical metadata",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "initialOrder": 5
+                                    },
+                                    "content": [{
+                                            "type": "Element",
+                                            "level": 5,
+                                            "ID": "5c76972c04642",
+                                            "attributes": {
+                                                "name": "digital",
+                                                "label": "Digital",
+                                                "ValueScheme": "boolean",
+                                                "CardinalityMin": "1",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 1
+                                            }
+                                        }, {
+                                            "type": "Component",
+                                            "level": 5,
+                                            "ID": "5c76972c04667",
+                                            "attributes": {
+                                                "name": "Size",
+                                                "label": "Size",
+                                                "CardinalityMin": "0",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 2
+                                            },
+                                            "content": [{
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c046a6",
+                                                    "attributes": {
+                                                        "name": "number",
+                                                        "label": "Number",
+                                                        "ValueScheme": "decimal",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "initialOrder": 1
+                                                    }
+                                                }, {
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c046c8",
+                                                    "attributes": {
+                                                        "name": "unit",
+                                                        "label": "Unit",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "ValueScheme": [[{
+                                                                    "value": "KB"
+                                                                }, {
+                                                                    "value": "MB"
+                                                                }, {
+                                                                    "value": "GB"
+                                                                }, {
+                                                                    "value": "TB"
+                                                                }]],
+                                                        "initialOrder": 2
+                                                    }
+                                                }]
+                                        }]
+                                }]
+                        }]
+                }, {
+                    "type": "Component",
+                    "level": 2,
+                    "ID": "5c76972c04707",
+                    "attributes": {
+                        "name": "ElanFile",
+                        "label": "Elan file",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "unbounded",
+                        "initialOrder": 8
+                    },
+                    "content": [{
+                            "type": "Component",
+                            "level": 3,
+                            "ID": "5c76972c0471d",
+                            "attributes": {
+                                "name": "CoreResourceInformation",
+                                "label": "Core resource information",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "resource": ".eaf",
+                                "ValueScheme": [],
+                                "initialOrder": 1
+                            },
+                            "content": [{
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c0473d",
+                                    "attributes": {
+                                        "name": "inventoryId",
+                                        "label": "Inventory ID",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 1
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c04755",
+                                    "attributes": {
+                                        "name": "description",
+                                        "label": "Description",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "true",
+                                        "duplicate": "yes",
+                                        "height": "8",
+                                        "width": "60",
+                                        "initialOrder": 2,
+                                        "inputField": "multiple"
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c04773",
+                                    "attributes": {
+                                        "name": "medium",
+                                        "label": "Medium",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "unbounded",
+                                        "ValueScheme": [[{
+                                                    "value": "server"
+                                                }, {
+                                                    "value": "cdrom"
+                                                }, {
+                                                    "value": "memorystick"
+                                                }, {
+                                                    "value": "harddisc"
+                                                }, {
+                                                    "value": "dvd"
+                                                }, {
+                                                    "value": "diskette"
+                                                }, {
+                                                    "value": "hi8"
+                                                }]],
+                                        "initialOrder": 3
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c047ae",
+                                    "attributes": {
+                                        "name": "oldBoxNumber",
+                                        "label": "Old box number",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 4
+                                    }
+                                }, {
+                                    "type": "Component",
+                                    "level": 4,
+                                    "ID": "5c76972c047c0",
+                                    "attributes": {
+                                        "name": "TechnicalMetadata",
+                                        "label": "Technical metadata",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "initialOrder": 5
+                                    },
+                                    "content": [{
+                                            "type": "Element",
+                                            "level": 5,
+                                            "ID": "5c76972c047d0",
+                                            "attributes": {
+                                                "name": "digital",
+                                                "label": "Digital",
+                                                "ValueScheme": "boolean",
+                                                "CardinalityMin": "1",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 1
+                                            }
+                                        }, {
+                                            "type": "Component",
+                                            "level": 5,
+                                            "ID": "5c76972c047df",
+                                            "attributes": {
+                                                "name": "Size",
+                                                "label": "Size",
+                                                "CardinalityMin": "0",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 2
+                                            },
+                                            "content": [{
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c047ed",
+                                                    "attributes": {
+                                                        "name": "number",
+                                                        "label": "Number",
+                                                        "ValueScheme": "decimal",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "initialOrder": 1
+                                                    }
+                                                }, {
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c04819",
+                                                    "attributes": {
+                                                        "name": "unit",
+                                                        "label": "Unit",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "ValueScheme": [[{
+                                                                    "value": "KB"
+                                                                }, {
+                                                                    "value": "MB"
+                                                                }, {
+                                                                    "value": "GB"
+                                                                }, {
+                                                                    "value": "TB"
+                                                                }]],
+                                                        "initialOrder": 2
+                                                    }
+                                                }]
+                                        }]
+                                }]
+                        }]
+                }, {
+                    "type": "Component",
+                    "level": 2,
+                    "ID": "5c76972c0483b",
+                    "attributes": {
+                        "name": "AudioFile",
+                        "label": "Audio file",
+                        "CardinalityMin": "1",
+                        "CardinalityMax": "unbounded",
+                        "initialOrder": 9
+                    },
+                    "content": [{
+                            "type": "Component",
+                            "level": 3,
+                            "ID": "5c76972c0484a",
+                            "attributes": {
+                                "name": "CoreResourceInformation",
+                                "label": "Core resource information",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "resource": "audio\/*",
+                                "ValueScheme": [],
+                                "initialOrder": 1
+                            },
+                            "content": [{
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c0485e",
+                                    "attributes": {
+                                        "name": "inventoryId",
+                                        "label": "Inventory ID",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 1
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c0486c",
+                                    "attributes": {
+                                        "name": "description",
+                                        "label": "Description",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "true",
+                                        "duplicate": "yes",
+                                        "height": "8",
+                                        "width": "60",
+                                        "initialOrder": 2,
+                                        "inputField": "multiple"
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c0487e",
+                                    "attributes": {
+                                        "name": "medium",
+                                        "label": "Medium",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "unbounded",
+                                        "ValueScheme": [[{
+                                                    "value": "server"
+                                                }, {
+                                                    "value": "cdrom"
+                                                }, {
+                                                    "value": "memorystick"
+                                                }, {
+                                                    "value": "harddisc"
+                                                }, {
+                                                    "value": "dvd"
+                                                }, {
+                                                    "value": "diskette"
+                                                }, {
+                                                    "value": "hi8"
+                                                }]],
+                                        "initialOrder": 3
+                                    }
+                                }, {
+                                    "type": "Element",
+                                    "level": 4,
+                                    "ID": "5c76972c0489c",
+                                    "attributes": {
+                                        "name": "oldBoxNumber",
+                                        "label": "Old box number",
+                                        "ValueScheme": "string",
+                                        "CardinalityMin": "0",
+                                        "CardinalityMax": "1",
+                                        "Multilingual": "false",
+                                        "duplicate": "yes",
+                                        "initialOrder": 4
+                                    }
+                                }, {
+                                    "type": "Component",
+                                    "level": 4,
+                                    "ID": "5c76972c048ab",
+                                    "attributes": {
+                                        "name": "TechnicalMetadata",
+                                        "label": "Technical metadata",
+                                        "CardinalityMin": "1",
+                                        "CardinalityMax": "1",
+                                        "initialOrder": 5
+                                    },
+                                    "content": [{
+                                            "type": "Element",
+                                            "level": 5,
+                                            "ID": "5c76972c048bb",
+                                            "attributes": {
+                                                "name": "digital",
+                                                "label": "Digital",
+                                                "ValueScheme": "boolean",
+                                                "CardinalityMin": "1",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 1
+                                            }
+                                        }, {
+                                            "type": "Component",
+                                            "level": 5,
+                                            "ID": "5c76972c048c9",
+                                            "attributes": {
+                                                "name": "Size",
+                                                "label": "Size",
+                                                "CardinalityMin": "0",
+                                                "CardinalityMax": "1",
+                                                "initialOrder": 2
+                                            },
+                                            "content": [{
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c048d5",
+                                                    "attributes": {
+                                                        "name": "number",
+                                                        "label": "Number",
+                                                        "ValueScheme": "decimal",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "initialOrder": 1
+                                                    }
+                                                }, {
+                                                    "type": "Element",
+                                                    "level": 6,
+                                                    "ID": "5c76972c048e2",
+                                                    "attributes": {
+                                                        "name": "unit",
+                                                        "label": "Unit",
+                                                        "CardinalityMin": "1",
+                                                        "CardinalityMax": "1",
+                                                        "ValueScheme": [[{
+                                                                    "value": "KB"
+                                                                }, {
+                                                                    "value": "MB"
+                                                                }, {
+                                                                    "value": "GB"
+                                                                }, {
+                                                                    "value": "TB"
+                                                                }]],
+                                                        "initialOrder": 2
+                                                    }
+                                                }]
+                                        }]
+                                }]
+                        }]
+                }, {
+                    "type": "Component",
+                    "level": 2,
+                    "ID": "5c76972c048ff",
+                    "attributes": {
+                        "name": "Speaker",
+                        "label": "Speaker",
+                        "CardinalityMin": "0",
+                        "CardinalityMax": "unbounded",
+                        "initialOrder": 10
+                    },
+                    "content": [{
+                            "type": "Element",
+                            "level": 3,
+                            "ID": "5c76972c0490c",
+                            "attributes": {
+                                "name": "id",
+                                "label": "ID",
+                                "ValueScheme": "int",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "initialOrder": 1
+                            }
+                        }, {
+                            "type": "Element",
+                            "level": 3,
+                            "ID": "5c76972c0491a",
+                            "attributes": {
+                                "name": "nameCode",
+                                "label": "Name code",
+                                "ValueScheme": "string",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "initialOrder": 2
+                            }
+                        }, {
+                            "type": "Element",
+                            "level": 3,
+                            "ID": "5c76972c04927",
+                            "attributes": {
+                                "name": "city",
+                                "label": "City",
+                                "ValueScheme": "string",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "initialOrder": 3
+                            }
+                        }, {
+                            "type": "Element",
+                            "level": 3,
+                            "ID": "5c76972c04934",
+                            "attributes": {
+                                "name": "ageGroup",
+                                "label": "Age group",
+                                "ValueScheme": "string",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "initialOrder": 4
+                            }
+                        }, {
+                            "type": "Element",
+                            "level": 3,
+                            "ID": "5c76972c04941",
+                            "attributes": {
+                                "name": "languageBackground",
+                                "label": "Language background",
+                                "ValueScheme": "string",
+                                "CardinalityMin": "1",
+                                "CardinalityMax": "1",
+                                "initialOrder": 5
+                            }
+                        }]
+                }]
+        }],
+    "record": [{
+            "name": "Header",
+            "type": "component",
+            "value": [{
+                    "name": "MdCreator",
+                    "type": "element",
+                    "value": "Rob Zeeman"
+                }, {
+                    "name": "MdCreationDate",
+                    "type": "element",
+                    "value": "2018-10-10"
+                }, {
+                    "name": "MdProfile",
+                    "type": "element",
+                    "value": "clarin.eu:cr1:p_1454489235460"
+                }, [{
+                        "ref": "R1",
+                        "file": "6. Concrete.mp3"
+                    }]]
+        }, {
+            "name": "Resources",
+            "type": "component",
+            "value": [{
+                    "name": "ResourceProxyList",
+                    "type": "component",
+                    "value": [{
+                            "name": "ResourceProxy",
+                            "type": "component",
+                            "attributes": {
+                                "id": "R1"
+                            },
+                            "value": [{
+                                    "name": "ResourceType",
+                                    "type": "element",
+                                    "value": "Resource"
+                                }, {
+                                    "name": "ResourceRef",
+                                    "type": "element",
+                                    "value": "..\/resources\/6. Concrete.mp3"
+                                }, [{
+                                        "ref": "R1",
+                                        "file": "6. Concrete.mp3"
+                                    }]]
+                        }, [{
+                                "ref": "R1",
+                                "file": "6. Concrete.mp3"
+                            }]]
+                }, [{
+                        "ref": "R1",
+                        "file": "6. Concrete.mp3"
+                    }]]
+        }, {
+            "name": "Components",
+            "type": "component",
+            "value": [{
+                    "name": "EthnolectConversation",
+                    "type": "component",
+                    "value": [{
+                            "name": "id",
+                            "type": "element",
+                            "value": "6rrr"
+                        }, {
+                            "name": "title",
+                            "type": "element",
+                            "value": "Zeitsturm"
+                        }, {
+                            "name": "interviewDate",
+                            "type": "element",
+                            "value": "rr"
+                        }, [{
+                                "ref": "R1",
+                                "file": "6. Concrete.mp3"
+                            }]]
+                }, [{
+                        "ref": "R1",
+                        "file": "6. Concrete.mp3"
+                    }]]
+        }, [{
+                "ref": "R1",
+                "file": "6. Concrete.mp3"
+            }]]
+}

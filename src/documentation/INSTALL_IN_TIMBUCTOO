@@ -1,0 +1,147 @@
+= Timbuctoo & Timpars: Install, Configure & Usage one docker-compose file
+//:hardbreaks:
+:name: Maarten van der Peet
+
+writer: _{name}_
+date: _{docdate}_
+
+== Check out Timbuctoo & Timpars
+
+The Docker version, the easy way
+----
+    git clone https://github.com/HuygensING/timbuctoo.git
+    cd timbuctoo
+
+----
+
+
+The Timbuctoo editor is a php/js application.
+
+Checkout from *svn* unfuddle to timbuctoo folder.
+
+-----
+cd timbuctoo
+svn checkout https://meertens.unfuddle.com/svn/meertens_timpars/ timpars
+-----
+
+1 thing is missing, a templates_c folder
+-----
+cd timpars/views/
+
+mkdir templates_c
+chmod 777 templates_c
+cd ../
+-----
+
+
+=== Configure files: for local development, start docker
+----
+
+from timpars
+
+cp documentation/timbuctoo_configuration/inTimbuctoo/docker-compose.yml ../
+cp documentation/timbuctoo_configuration/config/config.php config/
+cp documentation/timbuctoo_configuration/js/ccf_config_editor.js js/
+cp -r documentation/timbuctoo_configuration/inTimbuctoo/php-apache ../
+# no trailing slash in de src
+cd ../
+docker-compose up
+----
+[NOTE] better script it in bash
+
+Check installation on:
+-----
+
+http://localhost:8888/timpars/
+http://localhost:8080/static/graphiql?hsid=fake
+-----
+
+Also Timbuctoo is ready to run, check, the GraphQl interface.
+
+If you're working local, you don't have to login, use:
+-----
+    http://localhost:8080/static/graphiql?hsid=fake
+-----
+
+Otherwise use. And login with your credentials.
+
+-----
+    http://localhost:8080/static/graphiql
+-----
+
+== import testfile Clusius
+
+As an example you can use the Clusius file. It is included in the Timbuctoo you downloaded.
+You can use curl for it. The syntax is:
+
+-----
+curl -v -F "file=@/<path to clusiusfile>;type=text/turtle" -F "encoding=UTF-8" -H "Authorization: fake" http://localhost:8080/v5/u33707283d426f900d4d33707283d426f900d4d0d/testclusius/upload/rdf?forceCreation=true
+-----
+
+Please adapt the <path to clusiusfile> to your situation. Mine is:
+----
+<path to clusiusfile> = "/Users/mvdpeet/Desktop/timbuctoo/timbuctoo-instancev4/src/test/resources/nl/knaw/huygens/timbuctoo/v5/bia_clusius.ttl"
+----
+
+So my command will be:
+-----
+curl -v -F "file=@//Users/mvdpeet/Desktop/timbuctoo/timbuctoo-instancev4/src/test/resources/nl/knaw/huygens/timbuctoo/v5/bia_clusius.ttl;type=text/turtle" -F "encoding=UTF-8" -H "Authorization: fake" http://localhost:8080/v5/u33707283d426f900d4d33707283d426f900d4d0d/testclusius/upload/rdf?forceCreation=true
+-----
+
+
+
+== Try a GraphQL-query on this dataset
+
+goto:
+
+-----
+    http://localhost:8080/static/graphiql?hsid=fake
+-----
+
+
+Perform this query:
+
+
+-----
+query plaatsen {
+  dataSets {
+    u33707283d426f900d4d33707283d426f900d4d0d__testclusius {
+      clusius_PlacesList {
+        items {
+          uri
+          tim_name {
+            value
+          }
+          tim_country {
+            value
+          }
+        }
+      }
+    }
+  }
+}
+-----
+
+== Normal usage, after first installation
+=== start Timbuctoo
+
+From Timbuctoo folder
+
+-----
+     docker-compose up
+-----
+
+=== start your webserver
+
+Ready to go!
+
+
+
+
+
+==== REMARKS
+- I tried also php own webserver php -S localhost:8888 but it doesn't work well (slow and some pages don't show up), no time to look into it
+
+
+
+

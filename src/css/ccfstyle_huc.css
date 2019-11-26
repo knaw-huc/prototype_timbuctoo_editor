@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31-okt-2017, 14:17:20
+    Author     : robzeeman
+*/
+
+.component{
+border:1px solid rgb(239, 239, 239);
+padding: 8px;
+margin: 6px 0;
+}
+.component:first-child{
+width: 90%;
+}
+
+
+input[type="file"]{
+margin-left: 20px;
+}
+
+#ccform{
+display: block;
+margin-top: 0;
+}
+
+#btnFrame{
+box-sizing: border-box;
+width: calc(100vw - 400px);
+min-width: 40px;
+position: fixed;
+bottom: 0;
+background-color: rgb(221, 221, 221);
+}
+
+.componentHeader{
+color:#666;
+background-color: rgb(239, 239, 239);
+font-weight: bold;
+padding: 4px 6px;
+text-transform: uppercase;
+font-size: 0.85rem;
+}
+
+.label{
+margin-top:6px;
+color: rgb(153, 153, 153);
+text-transform: uppercase;
+font-size: 0.85rem;
+}
+
+.resourceFileList{
+display:inline-block;
+border: 1px solid #bbb;
+min-height: 20px;
+min-width: 200px;
+}
+
+.errorMsg{
+color: #b00;
+font-weight: bold;
+display: inline;
+margin-left: 10px;
+}
+
+.btn, .compBtn, .optionalCompBtn, .resetUploadBtn{
+color:#fff;
+background-color: #323232;
+font-weight: bold;
+height:20px;
+margin: 0 6px;
+width: 30px;
+border-radius: 4px;
+}
+
+.btn{
+border: 1px solid #666;
+}
+
+.compBtn, .optionalCompBtn, .resetUploadBtn{
+border: 1px solid #ccc;
+}
+
+#OKbtn, #saveBtn, #resetBtn{
+/*color:#fff;
+background-color: #777;
+font-weight: bold;
+border: 1px solid #666;
+margin: 10px;
+font-size: 10px;
+padding: 6px 10px;
+border-radius: 4px;
+width: 54px;*/
+/*background-color: #fff;
+text-decoration: none;
+font: 400 .875rem/1.6 Roboto,sans-serif;
+text-align: center;
+cursor: pointer;
+padding:0.2rem 0.5rem;
+border-radius: 0.15rem;
+border: 1px solid RGB(92, 92, 92);
+margin: 8px 4px 0 0;*/
+font-size: 0.7rem;
+padding: 0.5rem;
+border-radius: 4px;
+background-color: rgba(0, 0, 0 ,0.07);
+border: 1px solid rgba(0, 0, 0, 0.09);
+font-weight: 700;
+color: rgba(62, 62, 62);
+margin-left: 10px;
+}
+
+.disabledComponent, .disabledElement{
+display: none;
+}
+
+.filename{
+display: block;
+margin: 4px 0 0 0;
+}
+
+.headerMsg{
+display: inline-block;
+font-size: 10px;
+margin-left: 10px;
+font-weight: normal;
+color:#deb9ac;
+}
+
+.fileForm{
+display: inline-block;
+}
+
+.hidden_element{
+display:none;
+}
+
+
+#errorSpace p{
+margin-left: 10px;
+font-weight: bold;
+color:#b00;
+}
+
+input, select, option, textarea {
+width: auto !important;
+height: auto !important;
+background-color: rgb(240, 245, 249);
+}
+
+
+

@@ -1,0 +1,13 @@
+RewriteEngine On
+#RewriteBase /timpars/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+AuthType Basic
+AuthName "Login"
+AuthUserFile /var/www/.timpars
+Require valid-user
+
+

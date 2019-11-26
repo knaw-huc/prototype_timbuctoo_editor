@@ -1,0 +1,44 @@
+{
+    "data": {
+        "tweaks": {
+            "name": "clusius_Residence",
+            "fields": [
+                {
+                    "name": "tim_beginDate",
+                    "attributes": {
+                        "label": "From",
+                        "displayOrder": 3
+                    }
+                },
+                {
+                    "name": "tim_hasLocation",
+                    "attributes": {
+                        "label": "Location",
+                        "displayOrder": 1
+                    }
+                },
+                {
+                    "name": "tim_endDate",
+                    "attributes": {
+                        "label": "Until",
+                        "displayOrder": 4
+                    }
+                },
+                {
+                    "name": "tim_original_id",
+                    "attributes": {
+                        "label": "Original ID",
+                        "displayOrder": 5
+                    }
+                },
+                {
+                    "name": "tim_hasResident",
+                    "attributes": {
+                        "label": "Resident",
+                        "displayOrder": 2
+                    }
+                }
+            ]
+        }
+    }
+}

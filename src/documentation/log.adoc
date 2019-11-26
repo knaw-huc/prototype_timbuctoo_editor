@@ -1,0 +1,136 @@
+= LOG
+
+:name: Maarten van der Peet
+writer: _{name}_
+modification date: _{docdate}_
+
+=== 17-7-2019
+
+- Installatie handleiding getest en aangepast. IT WORKS!
+
+- small adjustment in TimQuery.class.php
+
+
+Submit documentation to Unfuddle.
+
+Discussed an .git or .svn server in the team DI
+We have to wait for a local gitlab.
+
+I want to use docker for the local php server.
+More agnostic tham MAMP. There is no mysql necessary for Timpars
+
+==== A Docker journey with several attempts
+
+First the naive approach according to the Docker Hub.
+
+----
+docker run -d -p 8888:80 --name my-apache-php-app -v "$PWD":/var/www/html php:7.2-apache
+----
+
+Errors on the webpage about module rewrite not available. Had something to do with .htaccess file.
+
+Had to write a dockerfile and add a RUN command to enable modrewrite in Apache.
+
+----
+FROM php:7.2-apache
+MAINTAINER Maarten van der Peet <Maarten.van.der.Peet@huc.knaw.nl>
+RUN a2enmod rewrite
+COPY ./ /var/www/html/
+----
+
+and then
+
+----
+docker build -t timbuildje .
+docker run -d -p 8888:80 --name timrunnie timbuildje
+----
+
+Then a complaint about views/templates_c not available. Solution:
+----
+cd view
+mkdir templates_c
+chmod 777 templates_c
+----
+
+So I had to rebuild my image, instead of copying I should mount the src folder...
+That's necessary otherwise no editing possible.
+
+FLASH:
+Can't have a mounted volume in the dockerfile...
+https://stackoverflow.com/questions/26050899/how-to-mount-host-volumes-into-docker-containers-in-dockerfile-during-build
+
+----
+FROM php:7.2-apache
+MAINTAINER Maarten van der Peet <Maarten.van.der.Peet@huc.knaw.nl>
+RUN a2enmod rewrite
+----
+
+AND
+
+----
+docker build -t timtest .
+docker run -d -p 8888:80 --name timrunnie -v "$PWD":/var/www/html timtest
+----
+
+
+Unfortunatedly, two dockers next to each other can't look into each other microservices, like VMWARE.
+
+Maybe a solution on:
+https://stackoverflow.com/questions/38088279/communication-between-multiple-docker-compose-projects
+
+
+So try it to integrate it from within the docker-compose file of Timbuctoo. That works.
+
+There is something wrong with the paths in the configuration files but I can now use the names of the services in the docker-compose file. (I hope)
+
+
+I tried with curl from the php container:
+----
+docker exec -it timbuctoo_timbuctoo-editor_1 bash
+----
+
+
+
+----
+root@6982ce60c865:/var/www/html# curl -I timbuctoo_timbuctoo_1
+HTTP/1.1 307 Temporary Redirect
+Date: Wed, 17 Jul 2019 14:00:19 GMT
+Location: http://timbuctoo_timbuctoo_1/static/graphiql
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: origin, content-type, accept, authorization, vre_id
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
+Access-Control-Expose-Headers: Location, Link, X_AUTH_TOKEN, VRE_ID
+Content-Length: 0
+
+root@6982ce60c865:/var/www/html#
+----
+
+That works.
+
+trial and error for right constants. Name of the container that is running. It is:
+timbuctoo_timbuctoo_1
+
+
+Hobbels:
+- Still a complaint about a Smary deprecated function. I have to discuss this with Rob. Maybe it has something to do with different php versions. Or maybe we should skip it, because eventually it will be a singe page JS (React?) Application. Workaround: the complaint disappears after a reload...
+- trial and error for right constants
+
+
+
+
+=== 16-7-2019
+
+Transferred notes to documentation. Choose .adoc. format. Seems more flexible than .md
+
+=== 15-7-2019
+
+Knowledge transfer Rob Zeeman => Maarten van der Peet. Made a lot of notes. Put these in BBEdit.
+
+Hobbels:
+
+- Clusius ingestion with Curl didn't work. Copy/Paste of curl command in Slack. Curly quotes showed up after magnification of terminal...It's a Mac/Windows thing. Smart quotes. Kill them!
+
+- my local development-webserver (Centos VMWare) couldn't reach into the local Timbuctoo host
+the workaround was using MAMP. (a click and install php/webserver)
+

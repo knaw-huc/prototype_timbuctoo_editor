@@ -1,0 +1,71 @@
+{
+    "data": {
+        "tweaks": {
+            "name": "clusius_Places",
+            "fields": [
+                {
+                    "name": "skos_altLabelList",
+                    "attributes": {
+                        "label": "Alternative name(s)",
+                        "displayOrder": 2
+                    }
+                },
+                {
+                    "name": "_inverse_tim_hasDeathPlaceList",
+                    "attributes": {
+                        "label": "Is death place of",
+                        "displayOrder": 5
+                    }
+                },
+                {
+                    "name": "tim_name",
+                    "attributes": {
+                        "label": "Place name",
+                        "displayOrder": 1
+                    }
+                },
+                {
+                    "name": "tim_country",
+                    "attributes": {
+                        "label": "Country",
+                        "displayOrder": 3
+                    }
+                },
+                {
+                    "name": "_inverse_tim_hasBirthPlaceList",
+                    "attributes": {
+                        "label": "Is birth place of",
+                        "displayOrder": 4
+                    }
+                },
+                {
+                    "name": "tim_original_id",
+                    "attributes": {
+                        "label": "Original ID"
+                    }
+                },
+                {
+                    "name": "tim_latitude",
+                    "attributes": {
+                        "label": "Latitude",
+                        "displayOrder": 6
+                    }
+                },
+                {
+                    "name": "tim_longitude",
+                    "attributes": {
+                        "label": "Longitude",
+                        "displayOrder": 7
+                    }
+                },
+                {
+                    "name": "tim_remarks",
+                    "attributes": {
+                        "label": "Remarks",
+                        "displayOrder": 8
+                    }
+                }
+            ]
+        }
+    }
+}
