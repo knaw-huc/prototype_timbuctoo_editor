@@ -1,1 +1,1 @@
-# prototype_timbuctoo_editor
+# Prototype Timbuctoo Editor
