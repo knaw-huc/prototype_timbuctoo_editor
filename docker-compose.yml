@@ -1,0 +1,17 @@
+version: "2"
+
+networks:
+  timpars_network:
+    external:
+      name: nginxproxynetwork
+
+services:
+  timpars:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - timpars_network
+    ports: 
+      - 8080:80
