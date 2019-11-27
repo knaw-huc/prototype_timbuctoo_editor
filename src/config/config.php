@@ -1,7 +1,7 @@
 <?php
 define('APPNAME', "Timbuctoo editor");
 define('BASE_URL', 'http://localhost:8080/timpars/');
-define('TWEAK_PATH', '/Library/WebServer/Documents/timpars/tweaks/');
+define('TWEAK_PATH', '/var/www/html/timpars/tweaks/');
 //define('TIMBUCTOO_SERVER', 'http://localhost:8080/v5/graphql');
 define('TIMBUCTOO_SERVER', 'https://repository.huygens.knaw.nl/v5/graphql');
 define('APP_LOGIN_URL', 'https://secure.huygens.knaw.nl/saml2/login');

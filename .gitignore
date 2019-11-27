@@ -6,6 +6,7 @@
 ehthumbs.db
 Thumbs.db
 .DS_Store
+.idea
 
 nbproject
 templates_c
