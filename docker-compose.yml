@@ -11,6 +11,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     restart: always
+    environment:
+      - VIRTUAL_HOST=proted.sd.di.huc.knaw
     networks:
       - timpars_network
     ports: 
