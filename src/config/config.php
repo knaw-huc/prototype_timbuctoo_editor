@@ -1,6 +1,6 @@
 <?php
 define('APPNAME', "Timbuctoo editor");
-define('BASE_URL', 'http://localhost:8080/timpars/');
+define('BASE_URL', 'https://proted.sd.di.huc.knaw.nl/timpars/');
 define('TWEAK_PATH', '/var/www/html/timpars/tweaks/');
 //define('TIMBUCTOO_SERVER', 'http://localhost:8080/v5/graphql');
 define('TIMBUCTOO_SERVER', 'https://repository.huygens.knaw.nl/v5/graphql');
