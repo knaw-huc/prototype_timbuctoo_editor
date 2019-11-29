@@ -1,4 +1,4 @@
-var server = 'https://www.huc.localhost/clarin_cmdi_forms/';
+var server = 'https://proted.sd.di.huc.knaw.nl/timpars/';
 
 var ccfOptions = {
     uploadButton: {
