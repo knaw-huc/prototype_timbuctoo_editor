@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.1-apache
 MAINTAINER Rob Zeeman <rob.zeeman@di.huc.knaw.nl>
 EXPOSE 80 443
 COPY .timpars /var/www/
