@@ -11,14 +11,14 @@ class Timquery
         return json_decode($json, 'JSON_OBJECT_AS_ARRAY');
     }
 
-    function setSimplePerson($uri, $name)
+    /*function setSimplePerson($uri, $name)
     {
         $json_struc = array();
         $json_struc["query"] = 'mutation Edit ($uri:String! $entity:u33707283d426f900d4d33707283d426f900d4d0d__rob_schema_PersonInput! ) {dataSets {u33707283d426f900d4d33707283d426f900d4d0d__rob {schema_Person {edit(uri: $uri entity: $entity) {uri schema_familyName {value}}}}}}';
         //$json_struc["variables"] = "{\"uri\": \"$uri\",\"entity\": {\"replacements\": {\"schema_name\": {\"type\": \"xsd_string\", \"value\": \"$name\"}}}}";
         $json_struc["variables"] = array("uri" => $uri, "entity" => array("replacements" => array("schema_familyName" => array("type" => "xsd_string", "value" => $name))));
         return json_encode($json_struc);
-    }
+    }*/
 
     function getSchema($type)
     {
@@ -97,11 +97,10 @@ class Timquery
         return $retArray;
     }
 
-    /*function getPossibleTitleFields($type) {
+/*    function getPossibleTitleFields($type) {
         $json = "query fields {__type(name: \"${type}CreationsInput\") { inputFields { name type {name}}}}";
         //die($json);
         $fields = $this->get_graphql_data($json);
-        //error_log(print_r($fields, true));
         return $fields;
     }*/
 
@@ -221,6 +220,7 @@ class Timquery
         if (isset($_SESSION["hsid"])) {
             $options[] = 'Authorization: ' . $_SESSION["hsid"];
         }
+
 
         $ch = curl_init(TIMBUCTOO_SERVER . '?query=' . urlencode($json));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $options);
@@ -350,7 +350,39 @@ class Timquery
         return $uri;
     }
 
-    public function editQuery($collectionName, $dataSet, $field)
+    public function updateCollectionItem($dataSet, $collection, $uri, $fields, $inputFieldTypes) {
+        $fieldList = array();
+        $valueList = array();
+
+        foreach ($fields as $field) {
+            if (substr($field["name"], -4) <> "List") {
+                $fieldList[] = "{$field["name"]} {value}";
+                $valueList[] = "\"{$field["name"]}\": {\"type\": \"{$inputFieldTypes[$field["name"]]}\", \"value\": \"{$field["content"][0]["value"]}\"}";
+            } else {
+                $fieldList[] = "{$field["name"]} {items {value}}";
+                $valueList[] = "\"{$field["name"]}\": " . $this->getMultiValuedField($field, $inputFieldTypes);
+            }
+        }
+
+        $query = "mutation EditEntity (\$uri: String! \$entity: {$dataSet}_{$collection}EditInput!) {dataSets { $dataSet { $collection {edit(uri: \$uri entity: \$entity) { " . implode(",", $fieldList) . "}}}}}";
+        $vars = "{\"uri\": \"$uri\", \"entity\": {\"replacements\": {". implode(",", $valueList) ."}}}";
+        $str = '{"query": "%s", "variables": %s}';
+        $json = sprintf($str, $query, $vars);
+        error_log($json);
+        return $this->set_graphql_data($json);
+    }
+
+    private function getMultiValuedField($field, $types) {
+        $items = array();
+        $type = $types[$field["name"]];
+
+        foreach ($field["content"] as $item) {
+            $items[] = "{\"type\": \"$type\", \"value\": \"{$item["value"]}\"}";
+        }
+        return "[" . implode(",", $items) . "]";
+    }
+
+    public function  editQuery($collectionName, $dataSet, $field)
     {
         return "mutation EditEntity (\$uri: String! \$entity: {$dataSet}_{$collectionName}EditInput!) {dataSets { $dataSet { $collectionName {edit(uri: \$uri entity: \$entity) { $field {value}}}}}}";
     }

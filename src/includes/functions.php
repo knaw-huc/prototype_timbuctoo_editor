@@ -25,8 +25,6 @@ function publish_dataset($id)
 
 function browse()
 {
-    //global $timQuery;
-    //global $tq;
     global $s;
 
     $s->assign('head', 'Timbuctoo dataset browser');
@@ -42,15 +40,14 @@ function ds_menu()
 
     $dataSets = $tq->get_graphql_data($timQuery["datasets"]);
     $dataSets = normalize_datasets($dataSets["data"]["dataSetMetadataList"]);
-    error_log(print_r($dataSets, true));
     usort($dataSets, 'cmp_dsTitle');
     $s->assign('sets', $dataSets);
-    //$navSets = $s->view2var("sub_datasets");
     $navSets = "";
     return $navSets;
 }
 
-function normalize_datasets($dataSets) {
+function normalize_datasets($dataSets)
+{
     $retArray = array();
     foreach ($dataSets as $item) {
         $tmpArray = array();
@@ -128,7 +125,7 @@ function show_general_list($set, $id, $cursor)
     global $queryTweak;
     global $timRights;
 
-    //error_log(date("h:i:s"));
+
     $strippedID = str_replace("List", "", $id);
 
 
@@ -155,7 +152,6 @@ function show_general_list($set, $id, $cursor)
     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
         $s->assign('permissions', $timRights[$set]);
     }
-    //error_log(date("h:i:s"));
     $s->view('generalList_huc');
 }
 
@@ -173,7 +169,6 @@ function create_entity($dataSet, $object)
     $editableData = $tw->makeCreateArray($fields, $tweakIndex);
     $objectArray = create_object_array($editableData, $object);
     $obj = create_editor_json($objectArray, "collection/{$dataSet}/{$object}/new");
-    //$s->assign('navSets', ds_menu());
     $s->assign('navColl', get_collections($dataSet));
     $s->assign('head', $tq->getDataSetTitle($dataSet));
     $s->assign('json', json_encode($obj));
@@ -233,7 +228,8 @@ function edit_entity($dataSet, $object, $uri)
     $s->view('editor_huc');
 }
 
-function check_logged_in() {
+function check_logged_in()
+{
     global $s;
 
     if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
@@ -341,9 +337,7 @@ function add_coll_item_data($id, $obj, $data)
     return $obj;
 }
 
-//function parse_coll_data($id, $obj, $data)
 function parse_coll_data($id, $data)
-
 {
     $retArr = array();
     $dataArr = array();
@@ -393,12 +387,12 @@ function parse_coll_data($id, $data)
 function edit_metadata_nw($id)
 {
     global $tq;
-    //global $tp;
     global $s;
     check_logged_in();
     $schema = $tq->get_graphql_data($tq->getSchema("DataSetMetadata"));
     $inputFields = $tq->get_graphql_data($tq->getInputFields("DataSetMetadataInput"));
     $tweak = get_tweak_file("DataSetMetadata.json");
+    // TODO
     // $json now hard coded, but must be derived from $schema and $inputFields
     $json = "query metadata{ dataSets { $id {DataSetMetadata: metadata {title {value} description {value} imageUrl {value} owner {name {value} email {value}} contact {name {value} email {value}} provenanceInfo {title {value} body {value}} license {uri}}}}}";
     $data = $tq->get_graphql_data($json);
@@ -412,22 +406,10 @@ function edit_metadata_nw($id)
     //$s->assign('navSets', ds_menu());
     $s->assign('navColl', get_collections($id));
     $s->assign('head', $tq->getDataSetTitle($id));
-//    print_r($data);
-//    die();
     $obj = add_data($id, $obj, $data);
     $s->assign('json', json_encode($obj));
     $s->view('editor_huc');
 }
-
-/*function createEntityEditor($data, $schema, $dataSet, $object, $tweakIndex) {
-    echo "=== DATA ===";
-    print_r($data);
-    echo "=== SCHEMA ===";
-    print_r($schema);
-    echo "=== Tweaks ===";
-    print_r($tweakIndex);
-    die($dataSet . "_" . $object);
-}*/
 
 function go_home()
 {
@@ -445,230 +427,6 @@ function createTweakIndex($dataSet, $obj)
     return $retArray;
 }
 
-/*function show_person($cUri)
-{
-    global $tq;
-    global $s;
-    global $queryTweak;
-
-    $uri = base64_decode($cUri);
-    $json = str_replace("#URI#", $uri, $queryTweak["clusius_Persons"]);
-    $result = $tq->get_graphql_data($json);
-    $person = parsePersonResult($result["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_Persons"]);
-    $s->assign('navSets', ds_menu());
-    $s->assign('navColl', get_collections("u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"));
-    $s->assign('head', $tq->getDataSetTitle("u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"));
-    $editURI = BASE_URL . "edit/u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo/clusius_Persons/{$cUri}";
-    $dropURI = BASE_URL . "drop/u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo/clusius_Persons/{$cUri}";
-    $s->assign('editURI', $editURI);
-    $s->assign('dropURI', $dropURI);
-    $s->assign("person", $person);
-    $s->view("show_person_huc");
-}*/
-
-/*function parsePersonResult($struc)
-{
-    $retArray = array();
-    $retArray["name"] = buildName($struc["tim_namesList"]["items"][0]["value"]);
-    $retArray["aka"] = array();
-    for ($i = 1; $i < count($struc["tim_namesList"]["items"]); $i++) {
-        $retArray["aka"][] = buildName($struc["tim_namesList"]["items"][$i]["value"]);
-    }
-    $retArray["birth_date"] = set_date($struc["tim_birthDate"]);
-    $retArray["death_date"] = set_date($struc["tim_deathDate"]);;
-    $retArray["birth_place"] = show_place($struc["tim_hasBirthPlace"]);
-    $retArray["death_place"] = show_place($struc["tim_hasDeathPlace"]);
-    $retArray["gender"] = set_gender($struc["tim_gender"]);
-    $retArray["member"] = set_member($struc["_inverse_tim_hasMember"]);
-    $retArray["residence"] = set_residence($struc["_inverse_tim_hasResidentList"]);
-    $retArray["bio_uri"] = set_uri($struc["_inverse_tim_isScientistBioOf"]["uri"]);
-    $retArray["bio"] = set_bio($struc["_inverse_tim_isScientistBioOf"]["tim_biography"]);;
-    $retArray["interest"] = set_interest($struc["_inverse_tim_isScientistBioOf"]["tim_hasFieldOfInterestList"]);
-    $retArray["occupation"] = set_activity($struc["_inverse_tim_isOccupationOfList"]);
-    $retArray["education"] = set_activity($struc["_inverse_tim_isEducationOfList"]);
-
-//    print_r($retArray);
-//    die();
-    return $retArray;
-}*/
-/*
-function set_member($member)
-{
-    $retArray = array();
-    if (!is_null($member)) {
-        $retArray["uri"] = set_uri($member["uri"]);
-        $retArray["title"] = $member["title"]["value"];
-    }
-    return $retArray;
-}
-
-function set_interest($obj)
-{
-    $retArray = array();
-    if (!is_null($obj)) {
-        foreach ($obj["items"] as $item) {
-            $bufArray = array();
-            $bufArray["uri"] = base64_encode($item["uri"]);
-            $bufArray["interest"] = $item["tim_value"]["value"];
-            $retArray[] = $bufArray;
-        }
-    }
-    return $retArray;
-}
-
-function set_activity($obj)
-{
-    $retArray = array();
-    if (!is_null($obj)) {
-        foreach ($obj["items"] as $item) {
-            $bufArray = array();
-            $bufArray["uri"] = set_uri($item["uri"]);
-            $bufArray["tim_description"] = $item["tim_description"]["value"];
-            $bufArray["years"] = period($item["tim_beginDate"], $item["tim_endDate"]);
-            $retArray[] = $bufArray;
-        }
-    }
-    return $retArray;
-}
-
-function set_residence($residence)
-{
-    $retArray = array();
-    if (!is_null($residence)) {
-        foreach ($residence["items"] as $item) {
-            $bufArray = array();
-            $bufArray["uri"] = set_uri($item["uri"]);
-            $bufArray["location"] = show_place($item["tim_hasLocation"]);
-            $retArray[] = $bufArray;
-        }
-    }
-    return $retArray;
-}*/
-/*
-function set_uri($uri)
-{
-    if (is_null($uri)) {
-        return "";
-    } else {
-        return base64_encode($uri);
-    }
-}
-
-function set_bio($bio)
-{
-    if (is_null($bio)) {
-        return "";
-    } else {
-        return $bio["value"];
-    }
-}
-
-function set_date($date)
-{
-    if (!is_null($date)) {
-        return $date["value"];
-    } else {
-        return "";
-    }
-}
-
-function set_gender($gender)
-{
-    if (!is_null($gender)) {
-        return $gender["value"];
-    } else {
-        return "";
-    }
-}*/
-
-/*function show_interest($cUri) {
-    global $tq;
-    global $s;
-    global $queryTweak;
-
-    $uri = base64_decode($cUri);
-    $list = $tq->get_graphql_data(sprintf($queryTweak["clusius_Fields_of_interest"], $uri));
-    $screenList = parseInterest($list["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_Fields_of_interest"]);
-    $s->assign('interest', $screenList);
-    $s->view('show_interest');
-}*/
-
-/*function parseInterest($list) {
-    $retArray = array();
-    $retArray["title"] = set_value($list["title"]);
-    $retArray["tim_value"] = set_value($list["tim_value"]);
-    $retArray["description"] = set_value($list["description"]);
-    $retArray["persons"] = set_persons($list["_inverse_tim_hasFieldOfInterestList"]["items"]);
-    return $retArray;
-}*/
-
-/*function set_value($item) {
-    if (is_null($item)) {
-        return "";
-    } else {
-        return $item["value"];
-    }
-}*/
-
-/*function set_persons($list)
-{
-    $retArray = array();
-    if (count($list)) {
-        foreach ($list as $element) {
-            $item = array();
-            $item["uri"] = base64_encode($element["tim_isScientistBioOf"]["uri"]);
-            $item["name"] = personNameAndDates($element["tim_isScientistBioOf"]["tim_namesList"]["items"][0]["value"], $element["tim_isScientistBioOf"]["tim_birthDate"], $element["tim_isScientistBioOf"]["tim_deathDate"]);
-            $retArray[] = $item;
-        }
-    }
-    return $retArray;
-}*/
-/*
-function show_place($place)
-{
-    $retVal = "";
-    if (is_null($place)) {
-        return "";
-    } else {
-        if (is_null($place["tim_name"])) {
-            if (!is_null($place["tim_country"])) {
-                $retVal = $place["tim_country"]["value"];
-            }
-        } else {
-            $retVal = $place["tim_name"]["value"];
-            if (!is_null($place["tim_country"])) {
-                $retVal = $retVal . ', ' . $place["tim_country"]["value"];
-            }
-        }
-    }
-    return $retVal;
-}
-
-function show_person_list($set, $id, $cursor = "null")
-{
-    global $tq;
-    global $s;
-    global $queryTweak;
-
-    if ($cursor != "null") {
-        $newCursor = "\"$cursor\"";
-    } else {
-        $newCursor = $cursor;
-    }
-
-    //$list = $tq->get_graphql_data(sprintf($queryTweak["clusius_PersonsList"], $newCursor));
-    $list = $tq->get_graphql_data(sprintf($queryTweak[$id], $newCursor));
-    $screenList = makePersonList($list);
-    $cursor = getCursors($list["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_PersonsList"]);
-    //$s->assign('navSets', ds_menu());
-    $s->assign('navColl', get_collections($set));
-    $s->assign('head', $tq->getDataSetTitle($set));
-    $s->assign('persons', $screenList);
-    $s->assign('cursor', $cursor);
-    $s->assign('set', $set);
-    $s->assign('listType', 'clusius_PersonsList');
-    $s->view('personList_huc');
-}*/
 
 function getCursors($cursors)
 {
@@ -677,42 +435,7 @@ function getCursors($cursors)
     $retArray["nextCursor"] = $cursors["nextCursor"];
     return $retArray;
 }
-/*
-function makePersonList($list)
-{
-    $retArray = array();
-    foreach ($list["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_PersonsList"]["items"] as $element) {
-        $item = array();
-        $item["uri"] = base64_encode($element["uri"]);
-        $item["name"] = personNameAndDates($element["tim_namesList"]["items"][0]["value"], $element["tim_birthDate"], $element["tim_deathDate"]);
-        $retArray[] = $item;
-    }
-    return $retArray;
-}*/
 
-/*function personNameAndDates($nameStruc, $birthDate, $deathDate)
-{
-
-    $name = buildName($nameStruc);
-    $name = $name . period($birthDate, $deathDate);
-    return $name;
-}*/
-
-/*function buildName($nameStruc)
-{
-    $nameArray = json_decode($nameStruc, true);
-    $name = '';
-    if (isset($nameArray["components"][0])) {
-        $name = $nameArray["components"][0]["value"];
-    }
-    if (isset($nameArray["components"][2])) {
-        $name = $name . ' ' . $nameArray["components"][2]["value"];
-    }
-    if (isset($nameArray["components"][1])) {
-        $name = $name . ' ' . $nameArray["components"][1]["value"];
-    }
-    return $name;
-}*/
 
 function period($bdArr, $ddArr)
 {
@@ -784,11 +507,12 @@ function update_collection_item($data, $dataset, $collection, $uriCode)
 
     $uri = base64_decode($uriCode);
 
-    foreach ($fields as $field) {
+    $response = $tq->updateCollectionItem($dataset, $collection, $uri, $fields, $inputFieldTypes);
+    error_log(print_r($response, true));
+    /*foreach ($fields as $field) {
         if (substr($field["name"], -4) <> "List") {
             $query = $tq->editQuery($collection, $dataset, $field["name"]);
             $vars = $tq->valueVariables($uri, $field["name"], $field["content"][0]["value"], $inputFieldTypes[$field["name"]]);
-            $value = $tq->getTypeAndValue($dataset, $collection, $field["name"], $uri);
             $json["query"] = $query;
             $json["variables"] = $vars;
             $response = $tq->set_graphql_data(json_encode($json));
@@ -799,7 +523,7 @@ function update_collection_item($data, $dataset, $collection, $uriCode)
             $json["variables"] = $vars;
             $response = $tq->set_graphql_data(json_encode($json, JSON_UNESCAPED_SLASHES));
         }
-    }
+    }*/
     $s = null;
     header("Location: " . BASE_URL . "show/$dataset/$collection/$uriCode");
 }
@@ -815,11 +539,6 @@ function get_input_types($arr)
     return $retArray;
 }
 
-/*function update_collection($data, $dataset, $collection, $uri)
-{
-    //echo $collection;
-    die($data);
-}*/
 
 function insert_collection_item($data, $dataset, $collection)
 {
@@ -869,21 +588,7 @@ function show_year($dateStr)
     $arr = explode("-", $dateStr);
     return $arr[0];
 }
-/*
-function show_object($id)
-{
-    global $tq;
-    global $s;
 
-    $obj = $tq->getObjectFields($id);
-    $displayObject = parse_object($obj, $id);
-    //$s->assign("name", $obj["data"]["__type"]["name"]);
-    $name = $tq->getDataSetTitle($id);
-    $s->assign("name", $name);
-    $s->assign("lists", $displayObject);
-    $s->assign('set', $id);
-    $s->view("objectLists");
-}*/
 
 function parse_object($obj, $id)
 {
@@ -937,56 +642,6 @@ function is_normal_collection($name)
     return true;
 }
 
-/*function hash_obj($obj)
-{
-    $retArray = array();
-    foreach ($obj as $arr) {
-        if ($arr["type"] == 'element') {
-            $retArray[$arr["name"]] = $arr["content"][0]["value"];
-        }
-    }
-    return $retArray;
-}
-
-function hash_old($uri)
-{
-    global $tq;
-    $retArray = array();
-    $result = $tq->getPlace($uri);
-    foreach ($result["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_Places"] as $key => $value) {
-        if (is_array($value) && key_exists("value", $value)) {
-            $retArray[$key] = $value["value"];
-        } else {
-            $retArray[$key] = '';
-        }
-    }
-    return $retArray;
-}
-
-function set_place_val($uri, $field, $input, $old, $type)
-{
-    global $tq;
-
-    if (key_exists($field, $input)) {
-        if ($input[$field] !== $old[$field]) {
-            $tq->setPlace($uri, $field, $input[$field], $type);
-        }
-    } else {
-        $tq->setPlace($uri, $field, '');
-    }
-}*/
-
-//function edit_metadata($id) {
-//    global $tq;
-//    global $tp;
-//    global $s;
-//
-//
-//    $timData = $tq->get_graphql_data("query metadata{ dataSets { $id {metadata { owner {name {value} email {value}} contact {name {value} email {value}} provenanceInfo {title {value} body {value}} license {uri}}}}}");
-//    $obj = $tp->parse($timData["data"]["dataSets"][$id]["metadata"], false, $tq);
-//    $s->assign('json', json_encode($obj));
-//    $s->view('editor');
-//}
 
 function drop_dataset($id)
 {
@@ -1189,16 +844,6 @@ function get_tweak_file($fileName)
     }
 }
 
-/*function new_person() {
-    global $tq;
-    global $tp;
-    global $s;
-
-    $timData = $tq->get_graphql_data($tq->getSchema('u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo_schema_Person'));
-    $obj = $tp->parse($timData, false, $tq);
-    $s->assign('json', json_encode($obj));
-    $s->view('editor');
-}*/
 
 function show_metadata($dataSet)
 {
@@ -1244,7 +889,8 @@ function get_collections($id)
     return $navColl;
 }
 
-function refresh_collections($id) {
+function refresh_collections($id)
+{
     if (file_exists(COLLECTION_CACHE . $id . '.rca')) {
         unlink(COLLECTION_CACHE . $id . '.rca');
     }
@@ -1276,92 +922,13 @@ function showContactInfo($md)
     }
     return $retStr;
 }
-/*
-function show_foi()
-{
-    global $timQuery;
-    global $s;
-    global $tq;
 
-    $timData = $tq->get_graphql_data($timQuery["clusius_fields_of_interests"]);
-    $prefields = $timData["data"]["dataSets"]["u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo"]["clusius_Fields_of_interestList"]["items"];
-    $fields = array();
-    foreach ($prefields as $prefield) {
-        $fields[] = array("uri" => $prefield["uri"], "field" => $prefield["tim_value"]["value"]);
-    }
-    usort($fields, 'cmp');
-    $s->assign('fields', $fields);
-    $s->view('clusius_foi');
-}*/
-/*
-function cmp($a, $b)
-{
-    if ($a["field"] == $b["field"]) {
-        return 0;
-    } else {
-        return ($a["field"] < $b["field"]) ? -1 : 1;
-    }
-    //return strcmp($a["sortOrder"], $b["sortOrder"]);
-}*/
-
-/*function cmp_names($a, $b) {
-    if ($a["name"] == $b["name"]) {
-        return 0;
-    } else {
-        return ($a["name"] < $b["name"]) ? -1 : 1;
-    }
-}*/
 
 function cmp_label($a, $b)
 {
     return strnatcasecmp($a["label"]["value"], $b["label"]["value"]);
 }
 
-/*function get_editable_object($uri, $type, $single) {
-    global $tp;
-    global $tq;
-    $json = createJSONquery($uri, $type);
-    $timArray = $tq->get_graphql_data($json);
-    $result = $tp->parse($timArray, $single);
-    send_ok(json_encode($result));
-}*/
-
-/*function createJSONquery($uri, $type)
-{
-    switch ($type) {
-        case 'simple_person':
-            return "query persons {dataSets { u33707283d426f900d4d33707283d426f900d4d0d__rob { schema_Person(uri: \"$uri\") { schema_familyName { value}}}}}";
-            break;
-        case 'interest_field':
-            return "query foi {dataSets {u33707283d426f900d4d33707283d426f900d4d0d__hpp6demo {clusius_Fields_of_interest(uri: \"$uri\") {tim_value {value}}}}}";
-            break;
-        default:
-            return "";
-    }
-}*/
-
-/*function test()
-{
-    global $timQuery;
-    global $tq;
-    $json = $timQuery["simple_names_pre_query"];
-    $result = $tq->get_graphql_data($json);
-    $json = $tq->setSimplePerson("http://example.org/person1", "Bonzo");
-    $result = set_graphql_data($json);
-    print_r($result);
-}*/
-/*
-function set_simple_person($uri, $name)
-{
-    global $timQuery;
-    global $tq;
-
-    $json = $timQuery["simple_names_pre_query"];
-    $result = $tq->get_graphql_data($json);
-    $json = $tq->setSimplePerson($uri, $name);
-    $result = $tq->set_graphql_data($json);
-    send_ok("OK");
-}*/
 
 function guidv4($data)
 {
@@ -1372,47 +939,7 @@ function guidv4($data)
 
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
-/*
-function rewrite_simple_person($uri, $struc)
-{
-    global $timQuery;
-    global $tq;
-    global $tp;
 
-    $name = $tp->getValueFromStruc($struc);
-    $json = $timQuery["simple_names_pre_query"];
-    $result = $tq->get_graphql_data($json);
-    $json = $tq->setSimplePerson($uri, $name);
-    $result = $tq->set_graphql_data($json);
-    simple_names();
-}
-
-function rewrite_foi($uri, $struc)
-{
-    global $timQuery;
-    global $tq;
-    global $tp;
-
-    $name = $tp->getValueFromStruc($struc);
-    $json = $timQuery["simple_names_pre_query"];
-    $result = $tq->get_graphql_data($json);
-    $json = $tq->setSimplePerson($uri, $name);
-    $result = $tq->set_graphql_data($json);
-    show_foi();
-}
-
-function send_ok($msg)
-{
-    header("HTTP/1.0 200 OK");
-    echo $msg;
-}
-
-function sendError($error)
-{
-    header("HTTP/1.0 401 Unauthorized");
-    echo $error;
-}
-*/
 
 /*
  * Function for showing the content of arrays in a log file
